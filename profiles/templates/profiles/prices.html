@@ -1,0 +1,33 @@
+{% extends 'profiles/home.html' %}
+
+{% block content %}
+
+
+
+
+
+{% if crypto.Response %}
+{{ quote }} doesn't exist. Try a crypto symbol like btc or xrp
+{% endif %}
+
+   {% for key,value in crypto.DISPLAY.items %}
+ 
+ <div class="media">
+   <img class="align-self-center mr-3" src={{ value.USD.IMAGEURL }} alt="{{ value.USD.source }}">
+  <div class="media-body">
+    <h5 class="mt-2">{{ key }}</h5>
+   
+    <p> <strong>Current Price: </strong>{{ value.USD.PRICE }}</p>
+    <p class="mb-0"><strong>Daily High:</strong> {{ value.USD.HIGHDAY }}<br/>
+          <strong>Daily Low:</strong>{{ value.USD.LOWDAY}}<br/>
+      <strong>Market Cap:</strong>{{ value.USD.MKTCAP}}<br/>
+    </p>
+  </div>
+</div>
+        
+
+{% endfor %}
+
+<br/>
+
+{% endblock %}

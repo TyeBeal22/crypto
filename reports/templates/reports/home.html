@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %} home {% endblock title %}
+
+{% block content %}
+
+
+   <!-- <div class="text-center text-white h1 mb-5">Welcome to MutationCode</div> -->
+
+
+
+
+
+
+						
+
+
+
+        {% if request.user.is_authenticated %}
+ <h1 style="text-align:center; color:#fff">Welcome Back!</h1>
+        {% else %}
+            <div class="text-white text-center h3"><a href="{% url 'account_login' %}" style="text-decoration: none">Login for more!</a></div>
+
+
+{% endif %}
+
+<script>
+$('#div_id_production_line').on("change", function() {
+    const pl = $('#id_production_line option:selected').text()
+    console.log(pl)
+    $('#prod_line').val(pl) 
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

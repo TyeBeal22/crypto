@@ -1,0 +1,115 @@
+{% load static %}
+{% url 'profiles:profile-view' as path_profiles %}
+{% url 'reports:home' as path_home %}
+{% url 'posts:post-list' as path_board %}
+{% url 'reports:select-view' as path_report %}
+
+
+
+
+	
+<nav class="navbar navbar-icon-top navbar-expand navbar-dark bg-dark border-bottom border-secondary font-q fixed-top py-3">
+
+        <div class="container">
+
+            <ul class="navbar-nav mr-auto">
+             {% if request.user.is_authenticated %}
+                <li class="nav-item {% if request.path == path_home %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'reports:home' %}"><img src="{%static 'images/logo/logo.png' %}" class="brand-image" alt="logo" style="height:4rem"></a>
+                </li>
+
+                <li class="nav-item {% if request.path == path_report %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'reports:select-view' %}"><img src="{%static 'images/report.png' %}" class="img-avatar brand-image" alt="profile picture" style="height:3rem"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'reports:pdf' %}"><img src="{%static 'images/pdf.png' %}" class="img-avatar brand-image" alt="profile picture" style="height:3rem"></a>
+                </li>
+                 <li class="nav-item {% if request.path == path_board %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'posts:post-list' %}"><img src="{%static 'images/mic.png' %}" class="img-avatar brand-image" alt="profile picture" style="height:3rem"></a>
+                </li>    
+                   {% else %}
+
+                 <li class="nav-item {% if request.path == path_home %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'reports:home' %}"><img src="{%static 'images/logo/logo.png' %}" class="brand-image" alt="logo" style="height:2.6rem"></a>
+                </li>
+
+                 {% endif %}
+            </ul>
+
+            <ul class="navbar-nav">
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                    <a class="btn" href="{% url 'profiles:panel' %}"><img src="{%static 'images/crypto.png' %}" class="img-avatar brand-image" alt="profile picture" style="height:3.5rem;width:3.5rem"></a>
+                    </li>
+
+                    <li class="nav-item {% if request.path == path_profiles %}active{% endif %}">
+                        <a href="{% url 'profiles:profile-view' %}" class="nav-link">
+                            <img src="{{ picture.url }}" class="img-avatar brand-image img-circle" alt="profile picture">
+                            <span class="ml-2">{{request.user}}</span>
+                        </a>
+                    </li>
+                  
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_logout' %}">
+                            <i class="fas fa-power-off mt-2"></i>
+                        </a>
+                    </li>
+
+                {% else %}
+                  <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_login' %}">
+                            <i class="fa fa-sign-in-alt"></i>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+            </div>
+            
+					</nav> <!-- /.theme-feature-menu -->
+
+
+
+<!-- 
+
+   <div class="collapse navbar-collapse" id="navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="nav-item {% if request.path == path_home %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'reports:home' %}">Home</a>
+                </li>
+                <li class="nav-item {% if request.path == path_board %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'posts:post-list' %}">Board</a>
+                </li>
+                <li class="nav-item {% if request.path == path_report %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'reports:select-view' %}">Get report</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'reports:pdf' %}">Todays PDF</a>
+                </li>        
+            </ul>
+
+            <ul class="navbar-nav">
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item {% if request.path == path_profiles %}active{% endif %}">
+                        <a href="{% url 'profiles:profile-view' %}" class="nav-link">
+                            <img src="{{ picture.url }}" class="img-avatar" alt="profile picture">
+                            <span class="ml-2">{{request.user}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_logout' %}">
+                            <i class="fas fa-power-off mt-2"></i>
+                        </a>
+                    </li>
+                {% else %}
+                  <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_login' %}">
+                            <i class="fa fa-sign-in-alt"></i>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+	   </div>
+</nav>
+
+
+-->
